@@ -30,9 +30,9 @@ class App extends Component {
             loading.update({ loading: true });
 
             if(enemies){
-                console.log(enemies, 'enemies params');
+                const frenemy = 'enemies';
 
-                characterApi.getCharacters()
+                characterApi.getCharacters(frenemy, enemies)
                     .then(characters => {
                         characterList.update({ characters });
                     })
@@ -43,9 +43,9 @@ class App extends Component {
                         loading.update({ loading: false });
                     });
             } else if(allies){
-                console.log(allies, 'allies params');
+                const frenemy = 'allies';
 
-                characterApi.getCharacters()
+                characterApi.getCharacters(frenemy, allies)
                     .then(characters => {
                         characterList.update({ characters });
                     })
@@ -56,7 +56,6 @@ class App extends Component {
                         loading.update({ loading: false });
                     });
             }
-            
         }
 
         loadCharacters();
