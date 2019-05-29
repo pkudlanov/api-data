@@ -17,19 +17,54 @@ class App extends Component {
         const characterList = new CharacterList({ characters: [] });
         main.appendChild(characterList.render());
 
-        const loading = new Loading({ loading: true });
+        const loading = new Loading({ loading: false });
         main.appendChild(loading.render());
 
-        characterApi.getCharacters()
-            .then(characters => {
-                characterList.update({ characters });
-            })
-            .catch(err => {
-                console.log(err);
-            })
-            .finally(() => {
-                loading.update({ loading: false });
-            });
+        function loadCharacters() {
+            const params = window.location.hash.slice(1);
+            const searchParams = new URLSearchParams(params);
+
+            const enemies = searchParams.get('enemies');
+            const allies = searchParams.get('allies');
+
+            loading.update({ loading: true });
+
+            if(enemies){
+                console.log(enemies, 'enemies params');
+
+                characterApi.getCharacters()
+                    .then(characters => {
+                        characterList.update({ characters });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                    .finally(() => {
+                        loading.update({ loading: false });
+                    });
+            } else if(allies){
+                console.log(allies, 'allies params');
+
+                characterApi.getCharacters()
+                    .then(characters => {
+                        characterList.update({ characters });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                    .finally(() => {
+                        loading.update({ loading: false });
+                    });
+            }
+            
+        }
+
+        loadCharacters();
+
+        window.addEventListener('hashchange', () => {
+            loadCharacters();
+        });
+
 
         return dom;
     }
