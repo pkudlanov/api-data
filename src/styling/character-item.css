@@ -1,3 +1,23 @@
 li {
     list-style: none;
+    height: 260px;
+    width: 300px;
+    text-align: center;
+    margin: 0 10px 10px 0px;
+    border: 1px solid rgb(38, 0, 255);
+    box-shadow: 3px 3px 3px gray;
+    background-color: rgb(255, 211, 117);
+    color: rgb(255, 136, 0);
+}
+
+li img {
+    height: 150px;
+}
+
+li:hover {
+    transition: .4s;
+    transform: scale(1.1);
+    box-shadow: 2px 2px 5px rgb(255, 150, 31);
+    background-color: rgb(255, 166, 0);
+    color: rgb(195, 104, 0);
 }

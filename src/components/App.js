@@ -2,6 +2,7 @@ import characterApi from '../services/character-api.js';
 import Component from './Component.js';
 import Header from './Header.js';
 import CharacterList from './CharacterList.js';
+import Loading from './Loading.js';
 
 class App extends Component {
     render() {
@@ -16,6 +17,9 @@ class App extends Component {
         const characterList = new CharacterList({ characters: [] });
         main.appendChild(characterList.render());
 
+        const loading = new Loading({ loading: true });
+        main.appendChild(loading.render());
+
         characterApi.getCharacters()
             .then(characters => {
                 characterList.update({ characters });
@@ -24,7 +28,7 @@ class App extends Component {
                 console.log(err);
             })
             .finally(() => {
-                
+                loading.update({ loading: false });
             });
 
         return dom;
