@@ -5,8 +5,10 @@ class CharacterList extends Component {
     render() {
         const list = this.renderDOM();
 
-        const characterItem = new CharacterItem({});
-        list.appendChild(characterItem.render());
+        this.props.characters.forEach(character => {
+            const characterItem = new CharacterItem({ character });
+            list.appendChild(characterItem.render());
+        });
 
         return list;
     }
