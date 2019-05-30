@@ -31,31 +31,29 @@ class App extends Component {
 
             if(enemies){
                 const frenemy = 'enemies';
-
-                characterApi.getCharacters(frenemy, enemies)
-                    .then(characters => {
-                        characterList.update({ characters });
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-                    .finally(() => {
-                        loading.update({ loading: false });
-                    });
+ 
+                loadCorrectCharacters(frenemy, enemies);
             } else if(allies){
                 const frenemy = 'allies';
 
-                characterApi.getCharacters(frenemy, allies)
-                    .then(characters => {
-                        characterList.update({ characters });
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-                    .finally(() => {
-                        loading.update({ loading: false });
-                    });
+                loadCorrectCharacters(frenemy, allies);
+            } else {
+                loadCorrectCharacters('', '');
             }
+
+        }
+
+        function loadCorrectCharacters(frenemy, frenemyParam) {
+            characterApi.getCharacters(frenemy, frenemyParam)
+                .then(characters => {
+                    characterList.update({ characters });
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+                .finally(() => {
+                    loading.update({ loading: false });
+                });
         }
 
         loadCharacters();

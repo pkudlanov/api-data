@@ -3,7 +3,7 @@ const URL = 'https://last-airbender-api.herokuapp.com/api/v1/characters';
 const characterApi = {
     getCharacters(frenemy, character) {
         let url = URL;
-  
+        
         if(character){
             const searchParams = new URLSearchParams();
             searchParams.set(frenemy, character);
