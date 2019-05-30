@@ -8,7 +8,10 @@ class App extends Component {
     render() {
         const dom = this.renderDOM();
 
-        const header = new Header();
+        const header = new Header({ 
+            message: '',
+            characters: []
+        });
         const headerDOM = header.render();
 
         const main = dom.querySelector('main');
@@ -22,6 +25,7 @@ class App extends Component {
 
         function loadCharacters() {
             const params = window.location.hash.slice(1);
+            
             const searchParams = new URLSearchParams(params);
 
             const enemies = searchParams.get('enemies');
@@ -31,11 +35,15 @@ class App extends Component {
 
             if(enemies){
                 const frenemy = 'enemies';
- 
+                
+                header.update({ message: params });
+                
                 loadCorrectCharacters(frenemy, enemies);
             } else if(allies){
                 const frenemy = 'allies';
-
+                
+                header.update({ message: frenemy });
+                
                 loadCorrectCharacters(frenemy, allies);
             } else {
                 loadCorrectCharacters('', '');
@@ -47,6 +55,7 @@ class App extends Component {
             characterApi.getCharacters(frenemy, frenemyParam)
                 .then(characters => {
                     characterList.update({ characters });
+                    header.update({ characters });
                 })
                 .catch(err => {
                     console.log(err);
