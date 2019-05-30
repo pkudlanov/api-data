@@ -7,20 +7,17 @@ class Header extends Component {
         const message = this.props.message;
         const capitalized = message.charAt(0).toUpperCase() + message.slice(1);
 
-        console.log(capitalized, 'capit');
+        const parts = capitalized.split('=', 2);
         
+        console.log(parts, 'capit');
+         
+        const frenemy = parts[0];
+        const name = parts[1];
 
-        const parts = capitalized.str.split('=', 2);
-
-        const name = parts[0];
-        const frenemy = parts[1];
-
-        //const frenemyMessage = capitalized.replace(/=/, ' of ');
         let finalMessage;
 
         console.log(message);
         
-
         if(!charsLength && !message){
             finalMessage = 'All Characters';
             

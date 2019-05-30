@@ -26,6 +26,8 @@ class App extends Component {
         function loadCharacters() {
             const params = window.location.hash.slice(1);
             
+            console.log(params, 'params');
+
             const searchParams = new URLSearchParams(params);
 
             const enemies = searchParams.get('enemies');
