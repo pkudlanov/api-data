@@ -14,8 +14,7 @@ class CharacterList extends Component {
     }
     renderTemplate() {
         return /*html*/ `
-            <ul>
-            </ul>
+            <ul></ul>
         `;
     }
 }

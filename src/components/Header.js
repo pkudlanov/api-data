@@ -3,11 +3,9 @@ import Component from './Component.js';
 class Header extends Component {
     renderTemplate() {
         const charsLength = this.props.characters.length;
-
         const message = this.props.message;
 
         const wholeMessage = message.split('=', 2);
-        
         const frenemy = wholeMessage[0];
         let name = wholeMessage[1];
         

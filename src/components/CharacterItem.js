@@ -17,7 +17,3 @@ class CharacterItem extends Component {
 }
 
 export default CharacterItem;
-
-// enemies https://last-airbender-api.herokuapp.com/api/v1/characters?enemies=${character.name}
-
-//  allies https://last-airbender-api.herokuapp.com/api/v1/characters?allies=${character.name}

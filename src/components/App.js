@@ -48,7 +48,6 @@ class App extends Component {
             } else {
                 loadCorrectCharacters('', '');
             }
-
         }
 
         function loadCorrectCharacters(frenemy, frenemyParam) {
@@ -70,7 +69,6 @@ class App extends Component {
         window.addEventListener('hashchange', () => {
             loadCharacters();
         });
-
 
         return dom;
     }
