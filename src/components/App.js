@@ -57,6 +57,7 @@ class App extends Component {
                     header.update({ characters });
                 })
                 .catch(err => {
+                    /*eslint-disable-next-line*/
                     console.log(err);
                 })
                 .finally(() => {
