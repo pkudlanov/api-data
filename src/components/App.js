@@ -25,8 +25,6 @@ class App extends Component {
 
         function loadCharacters() {
             const params = window.location.hash.slice(1);
-            
-            console.log(params, 'params');
 
             const searchParams = new URLSearchParams(params);
 
@@ -44,7 +42,7 @@ class App extends Component {
             } else if(allies){
                 const frenemy = 'allies';
                 
-                header.update({ message: frenemy });
+                header.update({ message: params });
                 
                 loadCorrectCharacters(frenemy, allies);
             } else {
