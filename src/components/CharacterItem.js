@@ -16,4 +16,6 @@ class CharacterItem extends Component {
     }
 }
 
+// Water Tribe, Earth Kingdom, Fire Nation, and Air Nomads
+
 export default CharacterItem;
