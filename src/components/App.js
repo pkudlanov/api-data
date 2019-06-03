@@ -28,42 +28,141 @@ class App extends Component {
 
             const searchParams = new URLSearchParams(params);
 
+            // for affiliations, affiliation equals frenemy
             const enemies = searchParams.get('enemies');
             const allies = searchParams.get('allies');
+            // const waterTribe = searchParams.get('water+tribe');
+            // const earthKingdom = searchParams.get('earth+kingdom');
+            // const fireNation = searchParams.get('fire+nation');
+            // const airNomads = searchParams.get('air+nomads');
+
+            const groups = [
+                { group: enemies, str: 'enemies' },
+                { group: allies, str: 'allies' },
+                { group: '', str: '' }
+                // { group: waterTribe, str: 'affiliation' },
+                // { group: earthKingdom, str: 'affiliation' },
+                // { group: fireNation, str: 'affiliation' },
+                // { group: airNomads, str: 'affiliation' }
+            ];
+
+            function loadCorrectGroup(groups){
+                for(let i = 0; i < groups.length; i++) {
+                    // const element = groups[i];
+
+                    let emptyStr = groups.length - 1;
+                    console.log(emptyStr, 'empty str');
+                    console.log(groups[emptyStr], 'obj');
+
+                    console.log(groups[i].group, 'group');
+
+                    if(groups[i].group){
+                        header.update = ({ message: params });
+    
+                        characterApi.getCharacters(i.str, i.group)
+                            .then(characters => {
+                                characterList.update({ characters });
+                                header.update({ characters });
+                            })
+                            .catch(err => {
+                                /*eslint-disable-next-line*/
+                                console.log(err);
+                            })
+                            .finally(() => {
+                                loading.update({ loading: false });
+                            });
+                        i = groups.length;
+                    } else if(i === emptyStr){
+                        header.update = ({ message: params });
+    
+                        characterApi.getCharacters(i.str, i.group)
+                            .then(characters => {
+                                characterList.update({ characters });
+                                header.update({ characters });
+                            })
+                            .catch(err => {
+                                /*eslint-disable-next-line*/
+                                console.log(err);
+                            })
+                            .finally(() => {
+                                loading.update({ loading: false });
+                            });
+                    }
+                    
+                }
+
+                // groups.forEach(x => {
+                //     if(x.group){
+                        
+                //         // header.update = ({ message: params });
+                        
+                //         characterApi.getCharacters(x.str, x.group)
+                //             .then(characters => {
+                //                 characterList.update({ characters });
+                //                 header.update({ characters });
+                //             })
+                //             .catch(err => {
+                //                 /*eslint-disable-next-line*/
+                //                 console.log(err);
+                //             })
+                //             .finally(() => {
+                //                 loading.update({ loading: false });
+                //             });
+                //     } else {
+                //         characterApi.getCharacters('', '')
+                //             .then(characters => {
+                //                 characterList.update({ characters });
+                //                 header.update({ characters });
+                //             })
+                //             .catch(err => {
+                //                 /*eslint-disable-next-line*/
+                //                 console.log(err);
+                //             })
+                //             .finally(() => {
+                //                 loading.update({ loading: false });
+                //             });
+                //     }
+                //     break;
+                // });
+            }
+
+            loadCorrectGroup(groups);
+                
+            // Water Tribe, Earth Kingdom, Fire Nation, and Air Nomads
 
             loading.update({ loading: true });
 
-            if(enemies){
-                const frenemy = 'enemies';
+            // if(enemies){
+            //     const frenemy = 'enemies';
                 
-                header.update({ message: params });
+            //     header.update({ message: params });
                 
-                loadCorrectCharacters(frenemy, enemies);
-            } else if(allies){
-                const frenemy = 'allies';
+            //     loadCorrectCharacters(frenemy, enemies);
+            // } else if(allies){
+            //     const frenemy = 'allies';
                 
-                header.update({ message: params });
+            //     header.update({ message: params });
                 
-                loadCorrectCharacters(frenemy, allies);
-            } else {
-                loadCorrectCharacters('', '');
-            }
+            //     loadCorrectCharacters(frenemy, allies);
+            // } else {
+            //     loadCorrectCharacters('', '');
+            // }
         }
 
-        function loadCorrectCharacters(frenemy, frenemyParam) {
-            characterApi.getCharacters(frenemy, frenemyParam)
-                .then(characters => {
-                    characterList.update({ characters });
-                    header.update({ characters });
-                })
-                .catch(err => {
-                    /*eslint-disable-next-line*/
-                    console.log(err);
-                })
-                .finally(() => {
-                    loading.update({ loading: false });
-                });
-        }
+        // function loadCorrectCharacters(frenemy, frenemyParam) {
+        //     characterApi.getCharacters(frenemy, frenemyParam)
+        //         .then(characters => {
+        //             characterList.update({ characters });
+        //             header.update({ characters });
+        //         })
+        //         .catch(err => {
+        //             /*eslint-disable-next-line*/
+        //             console.log(err);
+        //         })
+        //         .finally(() => {
+        //             loading.update({ loading: false });
+        //         });
+        // }
 
         loadCharacters();
 
