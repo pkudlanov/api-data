@@ -51,10 +51,10 @@ class App extends Component {
                     // const element = groups[i];
 
                     let emptyStr = groups.length - 1;
-                    console.log(emptyStr, 'empty str');
-                    console.log(groups[emptyStr], 'obj');
+                    // console.log(emptyStr, 'empty str');
+                    // console.log(groups[emptyStr], 'obj');
 
-                    console.log(groups[i].group, 'group');
+                    // console.log(groups[i].group, 'group');
 
                     if(groups[i].group){
                         header.update = ({ message: params });
